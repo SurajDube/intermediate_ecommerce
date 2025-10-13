@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -29,6 +30,14 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
+    final List<String> imageList = [
+      'assets/images/blotted Lips.jpeg',
+      'assets/images/Colourop-Lippie-Pencil.jpg',
+      'assets/images/images.jpeg',
+      'assets/images/No Filter.jpeg',
+      'assets/images/IPhone.jpeg',
+      'assets/images/Android_Phone.jpg',
+    ];
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
@@ -40,44 +49,67 @@ class _MyHomePageState extends State<MyHomePage> {
           IconButton(icon: Icon(Icons.shopping_cart_sharp), onPressed: () {}),
         ],
       ),
-      body: Row(
-        children: [
-          
-          Container(
-            //color: Colors.red,
-            
-            margin: EdgeInsets.only(left: 5),
-            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-            child: Row(
-              children: [
-                Text(
-                  "SHOPX",
-                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-                ),
-                Container(
-                  //color: Colors.amber,
-                  margin: EdgeInsets.only(left: 5),
-                  child: Row(
-                    children: [
-                      Padding(padding: EdgeInsets.only(right: 125)),
-                      Icon(Icons.menu),
-                    ],
+      body: Container(
+        //color: Colors.grey,
+        margin: EdgeInsets.all(2.0),
+        child: Column(
+          children: [
+            Container(
+              //color: Colors.red,
+              margin: EdgeInsets.only(left: 5),
+              padding: EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+              child: Row(
+                children: [
+                  Text(
+                    "SHOPX",
+                    style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
                   ),
-                ),
-                Container(
-                  //color: Colors.blueGrey,
-                  margin: EdgeInsets.only(left: 5),
-                  child: Row(
-                    children: [
-                      Padding(padding: EdgeInsets.symmetric(horizontal: 22.5)),
-                      Icon(Icons.grid_view),
-                    ],
+                  Container(
+                    //color: Colors.amber,
+                    margin: EdgeInsets.only(left: 5),
+                    child: Row(
+                      children: [
+                        Padding(padding: EdgeInsets.only(right: 125)),
+                        Icon(Icons.menu),
+                      ],
+                    ),
                   ),
-                ),
-              ],
+                  Container(
+                    //color: Colors.blueGrey,
+                    margin: EdgeInsets.only(left: 5),
+                    child: Row(
+                      children: [
+                        Padding(padding: EdgeInsets.symmetric(horizontal: 25)),
+                        Icon(Icons.grid_view),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             ),
-          ),
+
+            Flexible(
+              child: GridView.builder(
+                //padding: EdgeInsets.all(10),
+                padding: EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  mainAxisSpacing: 20,
+                  crossAxisSpacing: 10,
+                  childAspectRatio: 2 / 3,
+                ),
+                itemCount: imageList.length,
+
+                itemBuilder: (BuildContext context, int index) {
+                  return ClipRRect(
+                    borderRadius: BorderRadiusGeometry.all(Radius.circular(15)),
+                    child: Image.asset(imageList[index], fit: BoxFit.fill),
+                  );
+                },
+              ),
+            ),
           ],
+        ),
       ),
     );
   }
