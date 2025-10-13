@@ -102,7 +102,11 @@ class _MyHomePageState extends State<MyHomePage> {
                 itemBuilder: (BuildContext context, int index) {
                   return ClipRRect(
                     borderRadius: BorderRadiusGeometry.all(Radius.circular(15)),
-                    child: Image.asset(imageList[index], fit: BoxFit.fill),
+                    child: Image.asset(
+                      imageList[index],
+                      fit: BoxFit.fill,
+                      height: 244,
+                    ),
                   );
                 },
               ),
@@ -113,3 +117,9 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
+/*
+Icon(
+                            Icons.favorite_border,
+                            fontWeight: FontWeight.bold,
+                            ),
+*/
