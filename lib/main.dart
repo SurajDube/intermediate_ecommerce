@@ -99,7 +99,6 @@ class _MyHomePageState extends State<MyHomePage> {
                   childAspectRatio: 2 / 3,
                 ),
                 itemCount: imageList.length,
-
                 itemBuilder: (BuildContext context, int index) {
                   return ClipRRect(
                     borderRadius: BorderRadiusGeometry.all(Radius.circular(15)),
