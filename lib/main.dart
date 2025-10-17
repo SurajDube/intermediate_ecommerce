@@ -42,7 +42,56 @@ class _MyAppState extends State<MyApp> {
     );
   }
 }
+// --- Main Screen Widget ---
+class ProductGridScreen extends StatefulWidget {
+  const ProductGridScreen({super.key});
 
+  @override
+  State<ProductGridScreen> createState() => _ProductGridScreenState();
+}
+
+class _ProductGridScreenState extends State<ProductGridScreen> {
+  @override
+  Widget build(BuildContext context) {
+    // The total number of items to display: products.length + 1 for the placeholder
+    final int itemCount = products.length + 1;
+
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Products'),
+      ),
+      body: Padding(
+        padding: EdgeInsets.all(8.0),
+        child: GridView.builder(
+          itemCount: itemCount,
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2, // Two columns as seen in the image
+            crossAxisSpacing: 10,
+            mainAxisSpacing: 10,
+            childAspectRatio: 0.75, // Adjust this ratio to match the card height in the image
+          ),
+          itemBuilder: (context, index) {
+            // Check if it's the last item (which should be the "No Item In your Cart" placeholder)
+            if (index == products.length) {
+              // Create a special Product object for the placeholder data
+              final placeholderProduct = Product(
+                  'No Filter Foundation', '\$12.0', 'assets/placeholder.jpg', 5.0);
+              return ProductCard(
+                product: placeholderProduct,
+                isCartEmptyPlaceholder: true,
+              );
+            }
+
+            // Regular product card
+            return ProductCard(
+              product: products[index],
+            );
+          },
+        ),
+      ),
+    );
+  }
+}
 // --- Product Card Widget ---
 class ProductCard extends StatelessWidget {
   final Product product;
@@ -196,53 +245,3 @@ class ProductCard extends StatelessWidget {
   }
 }
 
-// --- Main Screen Widget ---
-class ProductGridScreen extends StatefulWidget {
-  const ProductGridScreen({super.key});
-
-  @override
-  State<ProductGridScreen> createState() => _ProductGridScreenState();
-}
-
-class _ProductGridScreenState extends State<ProductGridScreen> {
-  @override
-  Widget build(BuildContext context) {
-    // The total number of items to display: products.length + 1 for the placeholder
-    final int itemCount = products.length + 1;
-
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Products'),
-      ),
-      body: Padding(
-        padding: EdgeInsets.all(8.0),
-        child: GridView.builder(
-          itemCount: itemCount,
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2, // Two columns as seen in the image
-            crossAxisSpacing: 10,
-            mainAxisSpacing: 10,
-            childAspectRatio: 0.75, // Adjust this ratio to match the card height in the image
-          ),
-          itemBuilder: (context, index) {
-            // Check if it's the last item (which should be the "No Item In your Cart" placeholder)
-            if (index == products.length) {
-              // Create a special Product object for the placeholder data
-              final placeholderProduct = Product(
-                  'No Filter Foundation', '\$12.0', 'assets/placeholder.jpg', 5.0);
-              return ProductCard(
-                product: placeholderProduct,
-                isCartEmptyPlaceholder: true,
-              );
-            }
-
-            // Regular product card
-            return ProductCard(
-              product: products[index],
-            );
-          },
-        ),
-      ),
-    );
-  }
-}
