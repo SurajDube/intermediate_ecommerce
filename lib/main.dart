@@ -57,7 +57,7 @@ class _MyHomePageState extends State<MyHomePage> {
             Container(
               //color: Colors.red,
               margin: EdgeInsets.only(left: 5),
-              padding: EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+              padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
               child: Row(
                 children: [
                   Text(
@@ -89,23 +89,31 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
 
             Flexible(
+              
               child: GridView.builder(
                 //padding: EdgeInsets.all(10),
-                padding: EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+                padding: EdgeInsets.symmetric(horizontal: 5, vertical: 5),
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
-                  mainAxisSpacing: 20,
+                  mainAxisSpacing: 10,
                   crossAxisSpacing: 10,
                   childAspectRatio: 2 / 3,
                 ),
                 itemCount: imageList.length,
                 itemBuilder: (BuildContext context, int index) {
                   return ClipRRect(
-                    borderRadius: BorderRadiusGeometry.all(Radius.circular(15)),
-                    child: Image.asset(
-                      imageList[index],
-                      fit: BoxFit.fill,
-                      height: 244,
+                    borderRadius: BorderRadius.circular(10),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        
+                      ),
+                      
+                      child: Image.asset(
+                        imageList[index],
+                        fit: BoxFit.fitHeight,
+                        
+                        //color: Colors.amber,
+                      ),
                     ),
                   );
                 },
@@ -117,6 +125,7 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
+
 /*
 Icon(
                             Icons.favorite_border,
