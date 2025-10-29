@@ -27,11 +27,11 @@ class CartItemCard extends StatelessWidget {
   final ValueChanged<int> onQuantityChanged;
 
   const CartItemCard({
-    Key? key,
+    super.key,
     required this.item,
     required this.onDelete,
     required this.onQuantityChanged,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -51,13 +51,12 @@ class CartItemCard extends StatelessWidget {
                 height: 100,
                 fit: BoxFit.cover,
                 // Replace with a placeholder asset or custom loading widget for real apps
-                errorBuilder: (context, error, stackTrace) => 
-                  Container(
-                    width: 100, 
-                    height: 100, 
-                    color: Colors.grey[200],
-                    child: const Icon(Icons.image, color: Colors.grey),
-                  ),
+                errorBuilder: (context, error, stackTrace) => Container(
+                  width: 100,
+                  height: 100,
+                  color: Colors.grey[200],
+                  child: const Icon(Icons.image, color: Colors.grey),
+                ),
               ),
             ),
             const SizedBox(width: 12),
@@ -96,7 +95,10 @@ class CartItemCard extends StatelessWidget {
                   ),
                   const SizedBox(height: 2),
                   Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 6,
+                      vertical: 2,
+                    ),
                     decoration: BoxDecoration(
                       color: Colors.green.shade100,
                       borderRadius: BorderRadius.circular(4),
@@ -125,7 +127,7 @@ class CartItemCard extends StatelessWidget {
                     children: [
                       // Quantity Control
                       _buildQuantityControl(context),
-                      
+
                       // Delete Button
                       _buildDeleteButton(),
                     ],
@@ -165,11 +167,7 @@ class CartItemCard extends StatelessWidget {
         IconButton(
           constraints: const BoxConstraints(),
           padding: EdgeInsets.zero,
-          icon: Icon(
-            Icons.add_circle_outline,
-            color: Colors.black,
-            size: 24,
-          ),
+          icon: Icon(Icons.add_circle_outline, color: Colors.black, size: 24),
           onPressed: () => onQuantityChanged(item.quantity + 1),
         ),
       ],
@@ -186,9 +184,7 @@ class CartItemCard extends StatelessWidget {
         foregroundColor: Colors.white,
         backgroundColor: Colors.grey[600],
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(8),
-        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
         elevation: 0,
         textStyle: const TextStyle(fontSize: 14),
       ),
